@@ -94,3 +94,5 @@ dist
 .idea
 
 .DS_Store
+
+test.ts
