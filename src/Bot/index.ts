@@ -19,15 +19,22 @@ export class Bot {
         this.message = new BotMessage(this.client, this.database);
     }
 
+    private async setActivity(client: Client<true>) {
+        client.user.setActivity({
+            name: `${client.guilds.cache.size}個の鯖で招待リンクを撲殺中`,
+            type: ActivityType.Playing,
+        });
+    }
+
     public async loadEvents() {
         this.client.on("ready", async (client) => {
-            client.user.setActivity({
-                name: `${client.guilds.cache.size}個の鯖で招待リンクを撲殺中`,
-                type: ActivityType.Playing,
-            })
+            await this.setActivity(client);
             await this.rest.put(`/applications/${process.env.ID ?? ""}/commands`, {
                 body: this.interaction.commands,
-            })
+            });
+            setInterval(async () => {
+                await this.setActivity(client);
+            }, 30 * 1000);
         });
         this.client.on("interactionCreate", async (interaction) => {
             return await this.interaction.create(interaction);
