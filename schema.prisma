@@ -8,5 +8,6 @@ generator client {
 }
 
 model InviteLink {
-    url String @id
+    url  String @id
+    time BigInt
 }
