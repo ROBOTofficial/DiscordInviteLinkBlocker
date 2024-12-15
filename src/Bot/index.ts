@@ -19,9 +19,12 @@ export class Bot {
     }
 
     public async loadEvents() {
+        this.client.on("interactionCreate", async (interaction) => {
+            return await this.interaction.create(interaction);
+        });
         this.client.on("messageCreate", async (message) => {
             return await this.message.create(message);
-        })
+        });
     }
 
     public async login() {
