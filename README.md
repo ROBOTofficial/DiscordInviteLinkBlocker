@@ -1,15 +1,27 @@
-# discordinvitelinkblocker
+# 招待リンク削除ボット
 
-To install dependencies:
+大体のリンクを削除します。
 
-```bash
+招待リンクは[こちら](https://discord.com/oauth2/authorize?client_id=1317592426633891932&permissions=0&integration_type=0&scope=applications.commands+bot)
+
+## セットアップ
+
+> bunを使っていますがnpmでも大丈夫です。
+
+### ライブラリのインストールとセットアップ
+
+```console
 bun install
+
+bun run setup
 ```
 
-To run:
+### .envを作成
 
-```bash
-bun run index.ts
+.env.exampleを元に作成してください
+
+### 実行
+
 ```
-
-This project was created using `bun init` in bun v1.1.36. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+bun start
+```
