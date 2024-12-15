@@ -22,7 +22,7 @@ export class Bot {
     public async loadEvents() {
         this.client.on("ready", async (client) => {
             client.user.setActivity({
-                name: "Supported by distopia.top",
+                name: `${client.guilds.cache.size}個の鯖で招待リンクを撲殺中`,
                 type: ActivityType.Playing,
             })
             await this.rest.put(`/applications/${process.env.ID ?? ""}/commands`, {
