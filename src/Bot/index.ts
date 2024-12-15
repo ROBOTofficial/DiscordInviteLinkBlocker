@@ -1,4 +1,4 @@
-import { Client } from "discord.js";
+import { ActivityType, Client, REST } from "discord.js";
 
 import { INTENTS } from "./Bot.intents";
 import { BotMessage } from "./Bot.message";
@@ -10,6 +10,7 @@ export class Bot {
     private readonly client = new Client({
         intents: INTENTS
     });
+    private readonly rest = new REST({ version: "10" }).setToken(process.env.TOKEN ?? "");
     private readonly interaction: BotInteraction;
     private readonly message: BotMessage;
 
@@ -19,6 +20,15 @@ export class Bot {
     }
 
     public async loadEvents() {
+        this.client.on("ready", async (client) => {
+            client.user.setActivity({
+                name: "Supported by distopia.top",
+                type: ActivityType.Playing,
+            })
+            await this.rest.put(`/applications/${process.env.ID ?? ""}/commands`, {
+                body: this.interaction.commands,
+            })
+        });
         this.client.on("interactionCreate", async (interaction) => {
             return await this.interaction.create(interaction);
         });
