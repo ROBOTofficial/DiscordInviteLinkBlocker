@@ -44,16 +44,17 @@ export type InteractionCommands = Array<InteractionCommand>;
 export class BotInteraction {
     public readonly commands: InteractionCommands = [
         {
-            name: "regExp",
-            description: "regExp",
+            name: "check",
+            description: "invite link checker",
             options: [
                 {
                     type: 3,
-                    name: "check",
-                    description: "check content",
+                    name: "url",
+                    description: "please enter url",
+                    required: true,
                 }
             ]
-        },
+        }
     ];
     public readonly interactionRespnse: InteractionResponse;
 
