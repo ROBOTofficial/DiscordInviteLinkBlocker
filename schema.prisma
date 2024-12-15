@@ -1,0 +1,12 @@
+datasource db {
+    provider = "sqlite"
+    url      = "file:./db/database.sqlite3"
+}
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+model InviteLink {
+    url String @id
+}

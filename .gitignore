@@ -96,3 +96,7 @@ dist
 .DS_Store
 
 test.ts
+
+db/database.sqlite3
+
+migrations
