@@ -1,4 +1,5 @@
 import { inviteLinkChecker } from "./url";
+import { toHalfWidth } from "./string";
 
 import type { Database } from "../Database/index";
 
@@ -15,7 +16,7 @@ export async function findUrls(content: string, database?: Database): Promise<st
 
     for (const line of lines) {
         const urls = line.split(regExp);
-        for (const url of urls) {
+        for (const url of urls.map(value => toHalfWidth(value))) {
             if (URL_REGEXP_NO_HTTP.test(url) || URL_REGEXP_INVITE_NO_HTTP.test(url)) {
                 return url;
             }
