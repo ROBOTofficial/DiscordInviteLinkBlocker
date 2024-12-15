@@ -2,11 +2,11 @@ import { inviteLinkChecker } from "./url";
 
 import type { Database } from "../Database/index";
 
-const URL_REGEXP = /^https?:\/\/[\w/:%#\$&\?\(\)~\.=\+\-]+$/mi;
+const URL_REGEXP = /^https?:\/\/[\w/:%#\$&\?\(\)~\.=\+\-]+$/gmi;
 
-const URL_REGEXP_NO_HTTP = /discord\.gg\/[A-Za-z0-9]+/mi;
+const URL_REGEXP_NO_HTTP = /discord\.gg\/[A-Za-z0-9]+/gmi;
 
-const URL_REGEXP_INVITE_NO_HTTP = /discord\.com\/invite(\/|\\)[A-Za-z0-9]+/mi;
+const URL_REGEXP_INVITE_NO_HTTP = /discord\.com\/invite(\/|\\)[A-Za-z0-9]+/gmi;
 
 export async function findUrls(content: string, database?: Database): Promise<string | null> {
     const regExp = /(https?:\/\/[\w!\?/\+\-_~=;\.,\*&@#$%\(\)'\[\]]+)|(discord\.gg\/[A-Za-z0-9]+)|(discord\.com\/invite(\/|\\)[A-Za-z0-9]+)/mi;
