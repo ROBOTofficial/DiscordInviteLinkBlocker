@@ -5,15 +5,14 @@ import type { Database } from "../Database/index";
 
 const URL_REGEXP = /^https?:\/\/[\w\/:%#\$&\?\(\)~\.=\+\-]+$/gim;
 
-const URL_REGEXP_NO_HTTP = /discord\.gg\/[A-Za-z0-9\-]+/gim;
+const URL_REGEXP_NO_HTTP = /(?:https?:\/\/)?(?:discord).*gg.*([a-zA-Z0-9_-]+)/gim;
 
-const URL_REGEXP_INVITE_NO_HTTP =
-	/discord\.com\/invite(\/|\\)[A-Za-z0-9\-]+/gim;
+const URL_REGEXP_INVITE_NO_HTTP = /(?:https?:\/\/)?(?:discord)\.(?:[a-z]{2,6})\/?.*invite.*([a-zA-Z0-9_-]+)\b|(?:https?:\/\/)?(?:discordapp)\.(?:[a-z]{2,6})\/?.*invite.*([a-zA-Z0-9_-]+)/gim;
 
 const regExp = new RegExp(
-	URL_REGEXP.source +
-		URL_REGEXP_NO_HTTP.source +
-		URL_REGEXP_INVITE_NO_HTTP.source,
+	URL_REGEXP.source 
+    + URL_REGEXP_NO_HTTP.source
+    + URL_REGEXP_INVITE_NO_HTTP.source,
 	"gmi"
 );
 
