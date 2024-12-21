@@ -8,7 +8,7 @@ export class BotMessage {
     constructor(private readonly client: Client, private readonly database: Database) {}
 
     public async create(message: OmitPartialGroupDMChannel<Message<boolean>>): Promise<void> {
-        if (message.author.bot) {
+        if (message.author.bot && message.author.id !== process.env.ID) {
             return;
         }
         if (message.member && !message.member.permissions.has(PermissionsBitField.Flags.Administrator)) {
