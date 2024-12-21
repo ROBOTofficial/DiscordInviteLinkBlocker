@@ -54,6 +54,10 @@ export class BotInteraction {
                     required: true,
                 }
             ]
+        },
+        {
+            name: "help",
+            description: "help command",
         }
     ];
     public readonly interactionRespnse: InteractionResponse;
