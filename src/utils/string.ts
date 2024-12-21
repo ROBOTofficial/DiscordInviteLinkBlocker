@@ -1,3 +1,6 @@
+
+// SpecialChar was coded by yuzu.
+// https://github.com/yuzu-machan
 export class SpecialChar {
 	protected static exceptionChars: Record<string, string> = {
 		ℬ: "B",
