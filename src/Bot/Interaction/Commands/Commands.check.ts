@@ -10,9 +10,9 @@ export class CheckCommand extends CommandsBase {
         const url = interaction.options.getString("url");
         if (url) {
             if (await findUrls(url)) {
-                return { content: `以下は招待リンクが含まれています。\n\`${url}\`` } satisfies InteractionReplyOptions;
+                return { content: `以下は招待リンクが含まれています。\n\`${url.replaceAll("`", "\`")}\`` } satisfies InteractionReplyOptions;
             } else {
-                return { content: `以下は招待リンクが含まれていません\n\`${url}\`` } satisfies InteractionReplyOptions;
+                return { content: `以下は招待リンクが含まれていません\n\`${url.replaceAll("`", "\`")}\`` } satisfies InteractionReplyOptions;
             }
         }
         return null;
