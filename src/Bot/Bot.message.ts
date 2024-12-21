@@ -8,6 +8,9 @@ export class BotMessage {
     constructor(private readonly client: Client, private readonly database: Database) {}
 
     public async create(message: OmitPartialGroupDMChannel<Message<boolean>>): Promise<void> {
+        if (message.author.bot) {
+            return;
+        }
         if (message.member && !message.member.permissions.has(PermissionsBitField.Flags.Administrator)) {
             const url = await findUrls(message.content, this.database);
             if (url) {
