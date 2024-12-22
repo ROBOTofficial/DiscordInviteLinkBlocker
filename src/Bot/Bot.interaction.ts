@@ -58,6 +58,10 @@ export class BotInteraction {
         {
             name: "help",
             description: "help command",
+        },
+        {
+            name: "settings",
+            description: "設定が出来ます。",
         }
     ];
     public readonly interactionRespnse: InteractionResponse;
