@@ -4,7 +4,7 @@ import type { Prisma } from "@prisma/client";
 import type { DefaultArgs } from "@prisma/client/runtime/library";
 
 export class SettingsBot {
-    constructor(private readonly table: Prisma.SettingsBotDelegate<DefaultArgs>) {}
+    constructor(private readonly table: Prisma.SettingsExcludeBotDelegate<DefaultArgs>) {}
 
     public async data(guildId: string) {
         try {

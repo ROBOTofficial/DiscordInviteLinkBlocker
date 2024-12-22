@@ -6,6 +6,6 @@ export class Settings {
     public readonly bot: SettingsBot
 
     constructor(prisma: PrismaClient) {
-        this.bot = new SettingsBot(prisma.settingsBot);
+        this.bot = new SettingsBot(prisma.settingsExcludeBot);
     }
 }

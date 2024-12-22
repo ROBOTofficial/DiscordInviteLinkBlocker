@@ -12,6 +12,6 @@ model InviteLink {
     time BigInt
 }
 
-model SettingsBot {
+model SettingsExcludeBot {
     guildId String @id
 }
