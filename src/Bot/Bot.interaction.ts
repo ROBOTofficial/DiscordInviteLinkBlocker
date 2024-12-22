@@ -67,7 +67,7 @@ export class BotInteraction {
     public readonly interactionRespnse: InteractionResponse;
 
     constructor(private readonly client: Client, private readonly database: Database) {
-        this.interactionRespnse = new InteractionResponse(this.client);
+        this.interactionRespnse = new InteractionResponse(this.client, this.database);
     }
 
     public async create(interaction: Interaction<CacheType>) {
