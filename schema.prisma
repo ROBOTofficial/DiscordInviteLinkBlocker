@@ -11,3 +11,7 @@ model InviteLink {
     url  String @id
     time BigInt
 }
+
+model SettingsBot {
+    guildId String @id
+}
