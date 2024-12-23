@@ -7,8 +7,12 @@ import type { Database } from "../Database/index";
 export class BotMessage {
     constructor(private readonly client: Client, private readonly database: Database) {}
 
+    private async settingCheck(message: OmitPartialGroupDMChannel<Message<boolean>>) {
+        return message.guildId && await this.database.settings.bot.data(message.guildId);
+    }
+
     public async create(message: OmitPartialGroupDMChannel<Message<boolean>>): Promise<void> {
-        if (message.author.bot && message.author.id !== process.env.ID) {
+        if (!(await this.settingCheck(message)) && message.author.bot && message.author.id !== process.env.ID) {
             return;
         }
         if (message.member && !message.member.permissions.has(PermissionsBitField.Flags.Administrator)) {
