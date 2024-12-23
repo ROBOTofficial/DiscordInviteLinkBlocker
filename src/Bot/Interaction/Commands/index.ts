@@ -3,17 +3,20 @@ import { codeBlock } from "../../../utils/codeblock";
 
 import { CheckCommand } from "./Commands.check";
 import { HelpCommand } from "./Commands.help";
+import { SettingsCommand } from "./Commands.settings";
 
 import type { ChatInputCommandInteraction, CacheType } from "discord.js";
 import type { CommandsBase } from "./Commands.base";
+import type { Database } from "../../../Database/index";
 
 export class Commands {
     public readonly commands: CommandsBase[]
 
-    constructor(private readonly client: Client) {
+    constructor(private readonly client: Client, private readonly database: Database) {
         this.commands = [
             new CheckCommand(this.client),
             new HelpCommand(this.client),
+            new SettingsCommand(this.client),
         ]
     }
 

@@ -58,12 +58,16 @@ export class BotInteraction {
         {
             name: "help",
             description: "help command",
+        },
+        {
+            name: "settings",
+            description: "設定が出来ます。",
         }
     ];
     public readonly interactionRespnse: InteractionResponse;
 
     constructor(private readonly client: Client, private readonly database: Database) {
-        this.interactionRespnse = new InteractionResponse(this.client);
+        this.interactionRespnse = new InteractionResponse(this.client, this.database);
     }
 
     public async create(interaction: Interaction<CacheType>) {
