@@ -2,6 +2,12 @@ import { inviteLinkChecker } from "./url";
 import { SpecialChar } from "./string";
 
 import type { Database } from "../Database/index";
+import type { Embed } from "discord.js";
+
+export type Options = {
+    database?: Database
+    embeds?: Embed[]
+}
 
 const URL_REGEXP = /^https?:\/\/[\w\/:%#\$&\?\(\)~\.=\+\-]+$/gim;
 
@@ -16,9 +22,13 @@ const regExp = new RegExp(
 	"gmi"
 );
 
+async function embedChecker(embeds: Embed[]): Promise<boolean> {
+    return Boolean(embeds.map(embed => embed.provider && embed.provider.name === "Discord").length);
+}
+
 export async function findUrls(
 	content: string,
-	database?: Database
+    options?: Options,
 ): Promise<string | null> {
 	const lines = content.split("\n");
 
@@ -33,11 +43,14 @@ export async function findUrls(
 			) {
 				return url;
 			}
-			if (database && (await database.inviteLink.includeArchives(url))) {
+			if (options && options.database && (await options.database.inviteLink.includeArchives(url))) {
 				return url;
 			}
-			if (URL_REGEXP.test(url) && (await inviteLinkChecker(url))) {
-				return url;
+			if (URL_REGEXP.test(url)) {
+                const result = await inviteLinkChecker(url);
+                if (result.content || (result.cf && options && options.embeds && await embedChecker(options.embeds))) {
+                    return url;
+                }
 			}
 		}
 	}
