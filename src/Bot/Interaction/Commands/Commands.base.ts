@@ -2,6 +2,7 @@ import { Client } from "discord.js";
 import { codeBlock } from "../../../utils/codeblock";
 
 import type { CacheType, ChatInputCommandInteraction, InteractionReplyOptions, MessagePayload } from "discord.js";
+import type { Database } from "../../../Database/index";
 
 export class CommandsError {
     constructor(public readonly content: string) {}
@@ -10,7 +11,7 @@ export class CommandsError {
 export abstract class CommandsBase {
     public readonly commandName: string | null = null;
 
-    constructor(private readonly client: Client) {}
+    constructor(public readonly client: Client, public readonly database: Database) {}
 
     async commands(interaction: ChatInputCommandInteraction<CacheType>): Promise<void | string | MessagePayload | InteractionReplyOptions | CommandsError | null> {
         return new CommandsError("Commands Not Found");

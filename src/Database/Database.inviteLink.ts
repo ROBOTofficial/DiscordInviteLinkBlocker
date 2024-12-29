@@ -7,6 +7,15 @@ export class InviteLink {
     constructor(private readonly table: Prisma.InviteLinkDelegate<DefaultArgs>) {
     }
 
+    public async isNotFound(url: string) {
+        try {
+            return Boolean(await this.table.findFirst({ where: { url } }));
+        } catch (error) {
+            errorHandling(error);
+            return false;
+        }
+    }
+
     public async update(url: string) {
         try {
             const element = await this.table.findFirst({ where: { url } });
