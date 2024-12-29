@@ -14,9 +14,9 @@ export class Commands {
 
     constructor(private readonly client: Client, private readonly database: Database) {
         this.commands = [
-            new CheckCommand(this.client),
-            new HelpCommand(this.client),
-            new SettingsCommand(this.client),
+            new CheckCommand(this.client, this.database),
+            new HelpCommand(this.client, this.database),
+            new SettingsCommand(this.client, this.database),
         ]
     }
 
