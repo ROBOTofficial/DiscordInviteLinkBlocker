@@ -1,4 +1,4 @@
-import { ActivityType, Client, REST } from "discord.js";
+import { ActivityType, Client, Message, REST } from "discord.js";
 
 import { INTENTS } from "./Bot.intents";
 import { BotMessage } from "./Bot.message";
@@ -41,6 +41,9 @@ export class Bot {
         });
         this.client.on("messageCreate", async (message) => {
             return await this.message.create(message);
+        });
+        this.client.on("messageUpdate", async (oldMessage, newMessage) => {
+            return await this.message.update(oldMessage, newMessage);
         });
     }
 
