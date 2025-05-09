@@ -15,3 +15,8 @@ model InviteLink {
 model SettingsExcludeBot {
     guildId String @id
 }
+
+model UserSetting {
+    userId     String @id
+    msgReplace Boolean?
+}
