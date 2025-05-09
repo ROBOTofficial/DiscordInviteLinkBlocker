@@ -28,6 +28,7 @@ export class Bot {
 
     public async loadEvents() {
         this.client.on("ready", async (client) => {
+            console.log("Started");
             await this.setActivity(client);
             await this.rest.put(`/applications/${process.env.ID ?? ""}/commands`, {
                 body: this.interaction.commands,
