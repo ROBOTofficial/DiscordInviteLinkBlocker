@@ -1,4 +1,4 @@
-import { ChannelType, EmbedBuilder, PermissionsBitField } from "discord.js";
+import { ChannelType, EmbedBuilder, PermissionsBitField, Webhook, WebhookClient } from "discord.js";
 import { findUrls } from "../utils/regex";
 import { sumArrayContents } from "../utils/array";
 
@@ -107,7 +107,8 @@ export class BotMessage {
                     const webhook = await (async () => {
                         const whs = (await channel.fetchWebhooks()).values().toArray();
                         if (whs.filter(value => this.client.user && value.owner && value.owner.id === this.client.user.id).length) {
-                            return whs[0];
+                            const [wh] = whs;
+                            return new WebhookClient({ id: wh.id, token: wh.token ?? "" });
                         } else {
                             return await channel.createWebhook({ name: "MsgReplace" });
                         }
@@ -140,7 +141,8 @@ export class BotMessage {
                     return void await message.delete();
                 }
             }
-        } catch {
+        } catch (error) {
+            console.error(error);
             return;
         }
     }
