@@ -5,6 +5,7 @@ datasource db {
 
 generator client {
     provider = "prisma-client-js"
+    output   = "./node_modules/.prisma/client"
 }
 
 model InviteLink {
@@ -14,4 +15,9 @@ model InviteLink {
 
 model SettingsExcludeBot {
     guildId String @id
+}
+
+model UserSetting {
+    userId     String @id
+    msgReplace Boolean?
 }

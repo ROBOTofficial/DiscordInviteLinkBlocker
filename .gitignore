@@ -98,6 +98,7 @@ dist
 test.ts
 
 db/database.sqlite3
+db/database.sqlite3-journal
 
 log/**.log
 

@@ -4,6 +4,7 @@ import { codeBlock } from "../../../utils/codeblock";
 import { CheckCommand } from "./Commands.check";
 import { HelpCommand } from "./Commands.help";
 import { SettingsCommand } from "./Commands.settings";
+import { ReplaceCommand } from "./Commands.replace";
 
 import type { ChatInputCommandInteraction, CacheType } from "discord.js";
 import type { CommandsBase } from "./Commands.base";
@@ -17,6 +18,7 @@ export class Commands {
             new CheckCommand(this.client, this.database),
             new HelpCommand(this.client, this.database),
             new SettingsCommand(this.client, this.database),
+            new ReplaceCommand(this.client, this.database)
         ]
     }
 

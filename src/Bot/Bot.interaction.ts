@@ -62,6 +62,10 @@ export class BotInteraction {
         {
             name: "settings",
             description: "設定が出来ます。",
+        },
+        {
+            name: "replace",
+            description: "メッセージの自動置き換え設定の切り替えが出来ます。",
         }
     ];
     public readonly interactionRespnse: InteractionResponse;
