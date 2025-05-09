@@ -1,5 +1,7 @@
 # 招待リンク削除ボット
 
+**駄作です。**
+
 大体のリンクを削除します。
 
 招待リンクは[こちら](https://discord.com/oauth2/authorize?client_id=1317592426633891932&permissions=0&integration_type=0&scope=applications.commands+bot)
