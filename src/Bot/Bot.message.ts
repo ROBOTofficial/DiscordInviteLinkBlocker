@@ -106,7 +106,7 @@ export class BotMessage {
                     const attachments = await this.getAttachments(message.attachments.values().toArray());
                     const webhook = await (async () => {
                         const whs = (await channel.fetchWebhooks()).values().toArray();
-                        if (whs.length) {
+                        if (whs.filter(value => this.client.user && value.owner && value.owner.id === this.client.user.id).length) {
                             return whs[0];
                         } else {
                             return await channel.createWebhook({ name: "MsgReplace" });
